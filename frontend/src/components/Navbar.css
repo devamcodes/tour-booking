@@ -106,6 +106,8 @@
   .nav-links {
     text-align: center;
     padding: 2rem;
+    margin-bottom: 20%;
+    padding-bottom: 2rem;
     width: 100%;
     display: table;
   }
