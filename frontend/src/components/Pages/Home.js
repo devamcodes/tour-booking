@@ -2,13 +2,20 @@ import React from "react";
 import "../../App.css";
 import Hero from "../Hero";
 import Cards from "../Cards";
-import Footer from "../Footer";
+import Typography from "@mui/material/Typography";
 function Home() {
   return (
     <>
       <Hero />
       <Cards />
-      <Footer />
+      <Typography
+        style={{
+          fontWeight: "600",
+          margin: "10px 20px",
+        }}
+      >
+        This App is under development.. Desktop version is almost completed.
+      </Typography>
     </>
   );
 }
