@@ -2,11 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Buttons } from "./Buttons";
 import "./Footer.css";
+import { FaFacebookF, FaUserNinja } from "react-icons/fa";
+import Grid from "@mui/material/Grid";
 
 function Footer() {
   return (
-    <div className="footer-container">
-      <section className="footer-subscription">
+    <Grid className="footer-container" container>
+      <Grid className="footer-subscription" item direction={"column"}>
         <p className="footer-subscription-heading">
           Join the Adventure newsletter to receive our best vacation deals.
         </p>
@@ -24,38 +26,53 @@ function Footer() {
             <Buttons buttonStyle="btn--outline">Subscibe</Buttons>
           </form>
         </div>
-      </section>
-      <div className="footer-links">
-        <div className="footer-link-warpper">
-          <div className="footer-link-items">
-            <h2>About Us</h2>
-            <Link to="/sign-up">How it works</Link>
-            <Link to="/sign-up">Testimonials</Link>
-            <Link to="/sign-up">careers</Link>
+      </Grid>
+      <Grid container spacing={2} style={{ marginLeft: "10rem" }}>
+        <Grid
+          className="footer-links"
+          item
+          container
+          spacing={1}
+          marginBottom="10px"
+        >
+          <div className="footer-link-warpper">
+            <div className="footer-link-items">
+              <h2>About Us</h2>
+              <Link /* className="footer-link-items a" */ to="/sign-in">
+                How it works
+              </Link>
+              <Link to="/sign-in">Testimonials</Link>
+              <Link to="/sign-in">careers</Link>
+            </div>
           </div>
-        </div>
-      </div>
-      <section className="social-media">
-        <div className="social-media-wrap">
-          <div className="footer-logo">
-            <Link to="/" className="social-logo">
-              DAA <i className="fas fa-user-ninja"></i>
-            </Link>
+        </Grid>
+        <Grid className="social-media" item container spacing={3}>
+          <div className="social-media-wrap">
+            <Grid className="footer-logo" item>
+              <Link to="/" className="social-logo">
+                DAA{" "}
+                <i className="fas fa-user-ninja">
+                  <FaUserNinja />
+                </i>
+              </Link>
+            </Grid>
+            <Grid item className="website-rights">
+              DAA © 2021
+            </Grid>
+            <Grid item className="social-icons">
+              <Link
+                to="/"
+                target="_blank"
+                arial-label="Facebook"
+                className="social-icon-link facebook"
+              >
+                <FaFacebookF />
+              </Link>
+            </Grid>
           </div>
-          <small className="website-rights">DAA © 2021</small>
-          <div className="social-icons">
-            <Link
-              to="/"
-              target="_blank"
-              arial-label="Facebook"
-              className="social-icon-link facebook"
-            >
-              <i className="fab fa-facebook-f" />
-            </Link>
-          </div>
-        </div>
-      </section>
-    </div>
+        </Grid>
+      </Grid>
+    </Grid>
   );
 }
 
