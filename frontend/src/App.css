@@ -7,8 +7,7 @@
 
 .home,
 .services,
-.products,
-.sign-up {
+.products {
   display: flex;
   height: 90vh;
   align-items: center;
@@ -17,7 +16,6 @@
 }
 
 .services {
-  /* background-image: url("assets/img2.jpeg"); */
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -26,18 +24,8 @@
 }
 
 .products {
-  /* background-image: url("assets/img1.jpeg"); */
   background-position: center;
   background-size: fill;
-  background-repeat: no-repeat;
-  color: #fff;
-  font-size: 100px;
-}
-
-.sign-up {
-  /* background-image: url("assets/img8.jpeg"); */
-  background-position: center;
-  background-size: cover;
   background-repeat: no-repeat;
   color: #fff;
   font-size: 100px;
