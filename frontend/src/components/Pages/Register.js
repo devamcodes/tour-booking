@@ -29,7 +29,7 @@ function Register1() {
           if (newUser.password.length >= 6) {
             try {
               const { data } = await axios.post(
-                "http://localhost:7000/user/new-user",
+                "https://tour-booking-website.herokuapp.com/user/new-user",
                 newUser
               );
               // toast.success(data.message);
