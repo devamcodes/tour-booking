@@ -63,7 +63,7 @@ export default function SignIn() {
 
     event.preventDefault();
     if (!user.isLogged) {
-      if (userLog.email) {
+      if (userLog.email || storedUser.email) {
         setUserLog((prevState) => ({ ...prevState, isLoading: true }));
         const { data } = await axios.post(
           "https://tour-booking-website.herokuapp.com/user",
