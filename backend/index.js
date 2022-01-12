@@ -15,7 +15,7 @@ connecteDB();
 app.use(cors({ origin: "*", credentials: true }));
 app.use("/user", user);
 
-const PORT = process.env.PORT || 7000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
 	console.log(`server is listining on ${PORT}`);
 });

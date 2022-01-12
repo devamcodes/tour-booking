@@ -38,7 +38,7 @@ export const createUser = async (req, res) => {
 	}
 };
 
-export const getParticularUser = async (req, res) => {
+export const getParticularUserId = async (req, res) => {
 	try {
 		const { email } = req.body;
 		const existing = await user.findOne({ email: email });
