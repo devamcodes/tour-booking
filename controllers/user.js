@@ -1,11 +1,30 @@
 import user from "../models/user.js";
+import bcrypt from "bcrypt";
 
+//Login User
 export const checkUsers = async (req, res) => {
 	try {
 		const { email, password } = req.body;
-		const User = await user.findOne({ email, password });
-		if (User) {
-			res.status(200).json({ success: true, token: "Something" });
+		const User = await user.findOne({ email });
+		const isMatch = await bcrypt.compare(password, User.password);
+		if (isMatch) {
+			const payload = {
+				user: {
+					id: User.id,
+				},
+			};
+
+			jwt.sign(
+				payload,
+				process.env.jwtSecret,
+				{
+					expiresIn: 360000,
+				},
+				(err, token) => {
+					if (err) throw err;
+					res.status(200).json({ success: true, token: token });
+				}
+			);
 		} else {
 			res.status(400).json({ success: false, message: "Email and  Password do not match" });
 		}
@@ -14,30 +33,43 @@ export const checkUsers = async (req, res) => {
 	}
 };
 
+//Register User
 export const createUser = async (req, res) => {
 	try {
 		const { username, email, mobile, password, dateOfBirth, bloodgrp, gender } = req.body;
-		const existing = await user.findOne({
-			username,
-			email,
-			password,
-			mobile,
-			bloodgrp,
-			dateOfBirth,
-			gender,
-		});
+		let User = await user.findOne({ email });
 
-		if (existing) {
+		if (User) {
 			res.status(400).json({ success: false, message: "Unale to create the user already exist." });
 		} else {
-			const newUser = await user.create(req.body);
-			res.status(200).json(newUser);
+			User = new user({ username, email, mobile, password, dateOfBirth, bloodgrp, gender });
+			const salt = await bcrypt.genSalt(20);
+			User.password = await bcrypt.hash(password, salt);
+			await User.save();
+			const payload = {
+				user: {
+					id: User.id,
+				},
+			};
+			jwt.sign(
+				payload,
+				process.env.jwtSecret,
+				{
+					expiresIn: 360000,
+				},
+				(err, token) => {
+					if (err) throw err;
+					res.json({ token });
+				}
+			);
+			res.status(200).json(User);
 		}
 	} catch (error) {
 		res.status(500).json({ message: error.message });
 	}
 };
 
+//Get User Info
 export const getParticularUserId = async (req, res) => {
 	try {
 		const { email } = req.body;
@@ -52,6 +84,7 @@ export const getParticularUserId = async (req, res) => {
 	}
 };
 
+//Forgot Password
 export const updatePassword = async (req, res) => {
 	try {
 		const { id } = req.params;
