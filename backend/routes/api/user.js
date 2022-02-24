@@ -4,11 +4,11 @@ import {
 	createUser,
 	getParticularUserId,
 	updatePassword,
-} from "../controllers/user.js";
+} from "../../controllers/user.js";
 
 const router = express.Router();
 
-router.post("/", checkUsers);
+router.post("/login", checkUsers);
 router.post("/new-user", createUser);
 router.post("/check-user", getParticularUserId);
 router.put("/:id", updatePassword);

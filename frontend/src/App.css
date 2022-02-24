@@ -7,7 +7,7 @@
 
 .home,
 .services,
-.products {
+.Blog {
   display: flex;
   height: 90vh;
   align-items: center;
@@ -23,7 +23,7 @@
   font-size: 100px;
 }
 
-.products {
+.Blog {
   background-position: center;
   background-size: fill;
   background-repeat: no-repeat;

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../Register.css";
 import axios from "axios";
-
+import { toast } from "react-hot-toast";
 function Register1() {
   const [newUser, setNewUser] = useState({
     username: "",
@@ -35,26 +35,23 @@ function Register1() {
               console.log(`newUser`, newUser);
               history("/");
             } catch (err) {
-              console.log(err);
+              toast.error(err.response.data.message);
               // toast.error(err.response.data.message);
             }
           } else {
-            if (newUser.password.length < 6) {
-              // toast.error("Password must be of atleast 6 character");
-            } /* toast.error("Password is invalid. Please try again"); */ else
-              alert("password is invalid.");
+            toast.error("password is invalid.");
           }
         } else {
           if (newUser.mobile.length < 6) {
             // toast.error("Mobile Number must be of 10 digits");
           } /* toast.error("Mobile Number is invalid. Please try again"); */ else
-            alert("Mobile number is invalid");
+            toast.error("Mobile number is invalid");
         }
       } else {
         if (newUser.username.length < 3) {
           // toast.error("User Name must be of atleast 3 character");
         } /* toast.error("User Name is invalid. Please try again"); */ else
-          alert("User name is invalid");
+          toast.error("User name is invalid");
       }
     } else {
       // toast.error("email format is invalid");

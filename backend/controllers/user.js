@@ -1,32 +1,41 @@
 import user from "../models/user.js";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 //Login User
 export const checkUsers = async (req, res) => {
 	try {
 		const { email, password } = req.body;
 		const User = await user.findOne({ email });
-		const isMatch = await bcrypt.compare(password, User.password);
-		if (isMatch) {
-			const payload = {
-				user: {
-					id: User.id,
-				},
-			};
+		if (User) {
+			const isMatch = await bcrypt.compare(password, User.password);
+			if (isMatch) {
+				const payload = {
+					user: {
+						id: User.id,
+					},
+				};
 
-			jwt.sign(
-				payload,
-				process.env.jwtSecret,
-				{
-					expiresIn: 360000,
-				},
-				(err, token) => {
-					if (err) throw err;
-					res.status(200).json({ success: true, token: token });
-				}
-			);
+				jwt.sign(
+					payload,
+					process.env.jwtSecret,
+					{
+						expiresIn: 360000,
+					},
+					(err, token) => {
+						if (err) throw err;
+						res.status(200).json({
+							success: true,
+							token: token,
+							message: "Login Successfull",
+						});
+					}
+				);
+			} else {
+				res.status(400).json({ success: false, message: "Email and  Password do not match" });
+			}
 		} else {
-			res.status(400).json({ success: false, message: "Email and  Password do not match" });
+			res.status(400).json({ success: false, message: "User Does Not Exist." });
 		}
 	} catch (error) {
 		res.status(500).json({ message: error.message });
@@ -43,7 +52,7 @@ export const createUser = async (req, res) => {
 			res.status(400).json({ success: false, message: "Unale to create the user already exist." });
 		} else {
 			User = new user({ username, email, mobile, password, dateOfBirth, bloodgrp, gender });
-			const salt = await bcrypt.genSalt(20);
+			const salt = await bcrypt.genSalt(2);
 			User.password = await bcrypt.hash(password, salt);
 			await User.save();
 			const payload = {
@@ -73,7 +82,7 @@ export const createUser = async (req, res) => {
 export const getParticularUserId = async (req, res) => {
 	try {
 		const { email } = req.body;
-		const existing = await user.findOne({ email: email });
+		const existing = await user.find({ email });
 		if (existing) {
 			res.status(200).json({ success: true, id: existing._id, message: "User Found" });
 		} else {

@@ -7,6 +7,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 function ChangePassword() {
   //   const { setUser } = useContext(UserContext);
@@ -37,10 +38,10 @@ function ChangePassword() {
             found: true,
           }));
         } else {
-          alert("some error occurred try again");
+          toast.error("some error occurred try again");
         }
       } else {
-        alert("email format is invalid");
+        toast.error("email format is invalid");
       }
     } else if (newUser.id) {
       //this step can be removed by joi
@@ -54,16 +55,17 @@ function ChangePassword() {
           if (data.success) {
             history("/sign-in");
           } else {
-            alert(data.message);
+            toast.error(data.message);
           }
         } catch (error) {
-          console.log(error);
+          // console.log(error);
+          toast.error(error.response.data.message);
         }
       } else {
-        alert("Passwords do not match ");
+        toast.error("Passwords do not match ");
       }
     } else {
-      alert("please try again after some time...");
+      toast.error("please try again after some time...");
       history("/sign-in");
     }
   };

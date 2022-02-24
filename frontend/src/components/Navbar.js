@@ -59,17 +59,21 @@ function Navbar() {
                 </li>
                 <li className="nav-item">
                   <Link
-                    to="/products"
+                    to="/Blog"
                     className="nav-links"
                     onClick={closeMobileMenu}
                   >
-                    Products
+                    Blog
                   </Link>
                 </li>
               </>
             ) : null}
+            <li className="nav-item" style={{ marginTop: "20px" }}>
+              <Buttons buttonStyle="btn--outline" onClick={closeMobileMenu}>
+                SIGN UP
+              </Buttons>
+            </li>
           </ul>
-          {button && <Buttons buttonStyle="btn--outline">SIGN UP</Buttons>}
         </div>
       </nav>
     </>

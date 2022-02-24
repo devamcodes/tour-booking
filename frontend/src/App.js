@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SignIn from "./components/Pages/Sign-in";
 import Home from "./components/Pages/Home";
 import DashBoard from "./components/Pages/DashBoard";
-import Products from "./components/Pages/Products";
+import Blog from "./components/Pages/Blog";
 import ChangePassword from "./components/Pages/ChangePassword";
 import Register from "./components/Pages/Register";
 import { useState } from "react";
@@ -12,6 +12,8 @@ import UserContext from "./components/context";
 import Footer from "./components/Footer";
 import Cookies from "universal-cookie";
 import PrivateRoute from "./components/PrivateRoute";
+import BlogForm from "./components/Pages/BlogForm";
+import { Toaster } from "react-hot-toast";
 const cookies = new Cookies();
 
 // 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
@@ -26,6 +28,7 @@ function App() {
     <>
       <Router>
         <UserContext.Provider value={{ user, setUser }}>
+          <Toaster toastOptions={{ duration: 2000 }} />
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
@@ -38,13 +41,17 @@ function App() {
               <Route path="/dash-board" element={<DashBoard />} />
             </Route>
 
+            <Route path="/blog" element={<PrivateRoute auth={user.isLogged} />}>
+              <Route path="/blog" element={<Blog />} />
+            </Route>
             <Route
-              path="/products"
+              path="/new-blog"
               element={<PrivateRoute auth={user.isLogged} />}
             >
-              <Route path="/products" element={<Products />} />
+              <Route path="/new-blog" element={<BlogForm />} />
             </Route>
             <Route path="/sign-in" element={<SignIn />} />
+            <Route path="*" element={<>404 Page Not Found</>} />
           </Routes>
           <Footer />
         </UserContext.Provider>

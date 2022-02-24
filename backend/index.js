@@ -3,7 +3,7 @@ import express from "express";
 import color from "colors";
 import dotenv from "dotenv";
 import connecteDB from "./config/db.js";
-import user from "./routes/user.js";
+import indexRouter from "./routes/index.js";
 
 const app = express();
 
@@ -13,7 +13,7 @@ dotenv.config();
 
 connecteDB();
 app.use(cors({ origin: "*", credentials: true }));
-app.use("/user", user);
+app.use("/", indexRouter);
 
 // header("Access-Control-Allow-Origin: *");
 // header("Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE");
