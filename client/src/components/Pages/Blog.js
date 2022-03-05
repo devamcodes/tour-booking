@@ -16,7 +16,7 @@ export default function Blog() {
   const GetAllBlogs = useCallback(async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:5000/api/${PRIVATE_ROUTE.GET_ALL_BLOGS}`
+        `https://tour-booking-website.herokuapp.com/api/${PRIVATE_ROUTE.GET_ALL_BLOGS}`
       );
       setBlogs(data.data);
       // console.log("blogs", data.data);

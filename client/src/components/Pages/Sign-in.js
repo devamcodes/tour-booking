@@ -67,7 +67,7 @@ export default function SignIn() {
         try {
           setUserLog((prevState) => ({ ...prevState, isLoading: true }));
           const { data } = await axios.post(
-            "http://localhost:5000/api/user/login",
+            "https://tour-booking-website.herokuapp.com/api/user/login",
             userData
           );
           if (data.success) {
