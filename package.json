@@ -105,7 +105,11 @@
 	},
 	"devDependencies": {},
 	"scripts": {
-		"start": "nodemon index.ja"
+		"start": "node index.js",
+		"heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
+	},
+	"engines": {
+		"node": "14.17.1"
 	},
 	"keywords": [],
 	"author": "",

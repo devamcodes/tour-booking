@@ -29,6 +29,7 @@
 		"test": "react-scripts test",
 		"eject": "react-scripts eject"
 	},
+	"Proxy": "https://tour-booking-website.herokuapp.com/",
 	"eslintConfig": {
 		"extends": [
 			"react-app",
