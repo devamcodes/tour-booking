@@ -25,7 +25,7 @@ export default function BlogForm() {
   const handleSubmitButton = async (data) => {
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/${PRIVATE_ROUTE?.CREATE_NEW_BLOG}`,
+        `https://evening-retreat-75152.herokuapp.com/api/${PRIVATE_ROUTE?.CREATE_NEW_BLOG}`,
         data
       );
       if (!response.success) {

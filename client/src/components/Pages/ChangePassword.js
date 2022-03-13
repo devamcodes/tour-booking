@@ -27,7 +27,7 @@ function ChangePassword() {
       if (newUser.email.match(emailFormat)) {
         //this step can be removed by joi
         const { data } = await axios.post(
-          "https://tour-booking-website.herokuapp.com/user/check-user",
+          "https://evening-retreat-75152.herokuapp.com/api/user/check-user",
           newUser
         );
 
@@ -48,7 +48,7 @@ function ChangePassword() {
       if (newUser.password === newUser.confirmPassword) {
         try {
           const { data } = await axios.put(
-            `https://tour-booking-website.herokuapp.com/user/${newUser.id}`,
+            `https://evening-retreat-75152.herokuapp.com/user/${newUser.id}`,
             newUser
           );
           console.log(`data`, data);
