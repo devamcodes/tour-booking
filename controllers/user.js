@@ -71,7 +71,7 @@ export const createUser = async (req, res) => {
 					res.json({ token });
 				}
 			);
-			res.status(200).json(User);
+			res.status(200).json({ User, message: "Account Created" });
 		}
 	} catch (error) {
 		res.status(500).json({ message: error.message });

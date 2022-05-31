@@ -30,9 +30,9 @@ function Register1() {
                 "https://evening-retreat-75152.herokuapp.com/api/user/new-user",
                 newUser
               );
-              // toast.success(data.message);
-              console.log(data);
-              console.log(`newUser`, newUser);
+              toast.success(data.message);
+              // console.log(data);
+              // console.log(`newUser`, newUser);
               history("/");
             } catch (err) {
               toast.error(err.response.data.message);

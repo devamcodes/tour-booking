@@ -70,9 +70,15 @@ function Navbar() {
               </>
             ) : null}
             <li className="nav-item" style={{ marginTop: "20px" }}>
-              <Buttons buttonStyle="btn--outline" onClick={closeMobileMenu}>
-                SIGN UP
-              </Buttons>
+              {user.isLogged ? (
+                <Buttons buttonStyle="btn--outline" onClick={closeMobileMenu}>
+                  SIGN OUT
+                </Buttons>
+              ) : (
+                <Buttons buttonStyle="btn--outline" onClick={closeMobileMenu}>
+                  SIGN UP
+                </Buttons>
+              )}
             </li>
           </ul>
         </div>

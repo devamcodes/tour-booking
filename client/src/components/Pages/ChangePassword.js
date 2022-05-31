@@ -51,7 +51,7 @@ function ChangePassword() {
             `https://evening-retreat-75152.herokuapp.com/user/${newUser.id}`,
             newUser
           );
-          console.log(`data`, data);
+          // console.log(`data`, data);
           if (data.success) {
             history("/sign-in");
           } else {

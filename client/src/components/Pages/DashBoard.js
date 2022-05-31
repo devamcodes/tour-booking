@@ -4,7 +4,6 @@ import "../../App.css";
 import UserContext from "../context";
 export default function DashBoard() {
   const { user } = useContext(UserContext);
-  console.log("user", user);
   return (
     <>
       <Box>

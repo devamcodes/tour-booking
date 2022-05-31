@@ -90,7 +90,6 @@ export default function SignIn() {
               ...prevState,
               isLoading: false,
             }));
-
             toast.error("some error", data.message);
           }
         } catch (error) {

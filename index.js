@@ -1,6 +1,6 @@
 import cors from "cors";
 import express from "express";
-import color from "colors";
+// import color from "colors";
 import dotenv from "dotenv";
 import connecteDB from "./config/db.js";
 import indexRouter from "./routes/index.js";
