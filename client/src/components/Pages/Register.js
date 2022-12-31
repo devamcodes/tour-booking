@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "../Register.css";
 import axios from "axios";
 import { toast } from "react-hot-toast";
+import publicFetch from "../../utils/publicFetch";
 function Register1() {
   const [newUser, setNewUser] = useState({
     username: "",
@@ -18,44 +19,46 @@ function Register1() {
 
   const HandleSubmit = async (event) => {
     event.preventDefault();
-    if (newUser.email.match(emailFormat)) {
-      if (
-        newUser.username.length >= 3 &&
-        newUser.username.match(/^[a-zA-Z]+$/)
-      ) {
-        if (newUser.mobile.length === 10) {
-          if (newUser.password.length >= 6) {
-            try {
-              const { data } = await axios.post(
-                "https://evening-retreat-75152.herokuapp.com/api/user/new-user",
-                newUser
-              );
-              toast.success(data.message);
-              // console.log(data);
-              // console.log(`newUser`, newUser);
-              history("/");
-            } catch (err) {
-              toast.error(err.response.data.message);
-              // toast.error(err.response.data.message);
-            }
-          } else {
-            toast.error("password is invalid.");
-          }
-        } else {
-          if (newUser.mobile.length < 6) {
-            // toast.error("Mobile Number must be of 10 digits");
-          } /* toast.error("Mobile Number is invalid. Please try again"); */ else
-            toast.error("Mobile number is invalid");
-        }
-      } else {
-        if (newUser.username.length < 3) {
-          // toast.error("User Name must be of atleast 3 character");
-        } /* toast.error("User Name is invalid. Please try again"); */ else
-          toast.error("User name is invalid");
-      }
-    } else {
-      // toast.error("email format is invalid");
-    }
+    toast.error("The app is under maintanance");
+    // if (newUser.email.match(emailFormat)) {
+    //   if (
+    //     newUser.username.length >= 3 &&
+    //     newUser.username.match(/^[a-zA-Z]+$/)
+    //   ) {
+    //     if (newUser.mobile.length === 10) {
+    //       if (newUser.password.length >= 6) {
+    //         try {
+    //           const { data } = await publicFetch.post(
+    //             "/api/user/new-user",
+    //             // "https://evening-retreat-75152.herokuapp.com/api/user/new-user",
+    //             newUser
+    //           );
+    //           toast.success(data.message);
+    //           // console.log(data);
+    //           // console.log(`newUser`, newUser);
+    //           history("/");
+    //         } catch (err) {
+    //           toast.error(err?.response?.data?.message);
+    //           // toast.error(err.response.data.message);
+    //         }
+    //       } else {
+    //         toast.error("password is invalid.");
+    //       }
+    //     } else {
+    //       if (newUser.mobile.length < 6) {
+    //         // toast.error("Mobile Number must be of 10 digits");
+    //       } /* toast.error("Mobile Number is invalid. Please try again"); */ else
+    //         toast.error("Mobile number is invalid");
+    //     }
+    //   } else {
+    //     if (newUser.username.length < 3) {
+    //       // toast.error("User Name must be of atleast 3 character");
+    //     } /* toast.error("User Name is invalid. Please try again"); */ else
+    //       toast.error("User name is invalid");
+    //   }
+    // } else {
+    //   // toast.error("email format is invalid");
+    // }
   };
   const handleNewUser = (event) => {
     const { name, value } = event.target;

@@ -19,6 +19,7 @@ import { Divider } from "@mui/material";
 import Cookies from "universal-cookie";
 import PersonTwoToneIcon from "@mui/icons-material/PersonTwoTone";
 import toast from "react-hot-toast";
+import publicFetch from "../../utils/publicFetch";
 
 const cookies = new Cookies();
 
@@ -31,7 +32,7 @@ function Copyright(props) {
       {...props}
     >
       {"Copyright © "}
-      <Link color="inherit" href="https:website-six-ashy.vercel.app">
+      <Link color="inherit" href="https://tour-blog.vercel.app/">
         The Adventure Awaits
       </Link>{" "}
       {new Date().getFullYear()}
@@ -59,15 +60,18 @@ export default function SignIn() {
       : null,
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async () => {
+    toast.error("The application is under maintanance");
+    /* 
     const userData = userLog.email && userLog.password ? userLog : storedUser;
     event.preventDefault();
     if (!user.isLogged) {
       if (userData.email) {
         try {
           setUserLog((prevState) => ({ ...prevState, isLoading: true }));
-          const { data } = await axios.post(
-            "https://evening-retreat-75152.herokuapp.com/api/user/login",
+          const { data } = await publicFetch.post(
+            "/api/user/login",
+            // "https://evening-retreat-75152.herokuapp.com/api/user/login",
             userData
           );
           if (data.success) {
@@ -93,7 +97,7 @@ export default function SignIn() {
             toast.error("some error", data.message);
           }
         } catch (error) {
-          toast.error(error.response.data.message);
+          toast.error(error?.response?.data?.message);
           setUserLog((prevState) => ({
             ...prevState,
             isLoading: false,
@@ -110,6 +114,7 @@ export default function SignIn() {
       }));
       toast.success("Logged out");
     }
+   */
   };
   const handleRememberMe = (event) => {
     setUserLog((prevState) => ({
@@ -334,7 +339,7 @@ export default function SignIn() {
                         <LoadingButton
                           loadingIndicator="Loading..."
                           loading={userLog.isLoading}
-                          type="submit"
+                          // type="submit"
                           fullWidth
                           variant="contained"
                           sx={{ mt: 3, mb: 2 }}
