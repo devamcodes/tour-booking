@@ -7,7 +7,7 @@ import DashBoard from "./components/Pages/DashBoard";
 import Blog from "./components/Pages/Blog";
 import ChangePassword from "./components/Pages/ChangePassword";
 import Register from "./components/Pages/Register";
-import { useState } from "react";
+import React, { useState } from "react";
 import UserContext from "./components/context";
 import Footer from "./components/Footer";
 import Cookies from "universal-cookie";
@@ -51,7 +51,21 @@ function App() {
               <Route path="/new-blog" element={<BlogForm />} />
             </Route>
             <Route path="/sign-in" element={<SignIn />} />
-            <Route path="*" element={<>404 Page Not Found</>} />
+            <Route
+              path="*"
+              element={
+                <div
+                  style={{
+                    padding: 2,
+                    // marginLeft: 20,
+                    margin: "20px 20px",
+                    textAlign: "center",
+                  }}
+                >
+                  404 Page Not Found
+                </div>
+              }
+            />
           </Routes>
           <Footer />
         </UserContext.Provider>
