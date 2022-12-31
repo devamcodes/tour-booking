@@ -45,7 +45,7 @@ export default function BlogForm() {
       handleState();
       navigate("/Blog");
     } catch (err) {
-      toast.error(err.response.data.message);
+      toast.error(err?.response?.data?.message);
     }
   };
   return (
@@ -62,7 +62,7 @@ export default function BlogForm() {
           <Grid item xs={12}>
             <TextField
               required
-              defaultValue={state ? state.data.Title : ""}
+              defaultValue={state ? state?.data.Title : ""}
               {...register("Title", {
                 required: "This field is required",
                 min: 4,
